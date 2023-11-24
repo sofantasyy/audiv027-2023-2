@@ -103,7 +103,7 @@ A pesar de haber ingresado el código para que exista una respuesta LED adiciona
 -Internet 
 
 
- #### Software : 
+ ### Software : 
 Arduino ID
 
 
@@ -123,6 +123,10 @@ Carpetas a instalar en el programa Arduino:
 
 Link para entrenar algoritmo de Google Colab sin inetrvenir:
 https://colab.research.google.com/github/arduino/ArduinoTensorFlowLiteTutorials/blob/master/FruitToEmoji/FruitToEmoji.ipynb
+
+
+Link de Google Colab modificado y resultante:
+https://colab.research.google.com/drive/1sNo9rCZT6jovKp3YDQ1F2C3YG9fRIbwN
 
 
 ## Conclusiones y aprendizajes
