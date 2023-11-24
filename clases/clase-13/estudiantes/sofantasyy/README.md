@@ -92,8 +92,11 @@ Ahora rescatamos el código desde Micro_Speech de Harvard_TinyMLx. relacionado c
 
 ## Materiales 
 Arduino Nano 33 BLE
+
 Computador
+
 Colores para registrar
+
 Internet
 
 
