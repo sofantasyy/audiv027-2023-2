@@ -24,6 +24,7 @@ Ramo: Inteligencia artificial (AUDIV027-1)
 _____
 ## Acercamientos previos
 En nuestra primera aproximación con Arduino, nos llamó la atención el ejercicio "Fruit identification using Arduino and TensorFlow", que en ese entonces modificamos la base de datos para ingresar nuestro propio registro cromático y su asociación con un objeto distinto al original.
+
 ![Captura 1](https://github.com/sofantasyy/audiv027-2023-2/assets/142052341/ba33585b-9195-4943-a2a8-7b7b2927009c)
 
 También tuvimos la posibilidad de utilizar Micro_Speech de Harvard_TinyMLx. Inteligencia que permitía realizar asociaciones entre las palabras "Yes", "No" y "Unknown" escuchadas, una reapusta del encendido de la luz LED del microcontrolador en colores Verde, Rojo y Azul respectivamente.
