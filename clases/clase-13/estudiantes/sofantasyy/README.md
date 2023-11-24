@@ -79,18 +79,137 @@ A pesar de haber ingresado el código para que exista una respuesta LED adiciona
 ### PASO 6
 
 
-## Código
-´´´
-´´´
+## Código 
 
+```
+// inicio referencia
+// https://github.com/arduino/ArduinoTensorFlowLiteTutorials/blob/master/FruitToEmoji/sketches/object_color_classify/object_color_classify.ino
 
-### Index
+// Arduino_TensorFlowLite - Version: 0.alpha.precompiled
+#include <TensorFlowLite.h>
 
+#include <tensorflow/lite/micro/all_ops_resolver.h>
+#include <tensorflow/lite/micro/micro_error_reporter.h>
+#include <tensorflow/lite/micro/micro_interpreter.h>
+#include <tensorflow/lite/schema/schema_generated.h>
+#include <tensorflow/lite/version.h>
+#include <Arduino_APDS9960.h>
+#include "model.h"
 
-### Sketch
+// global variables used for TensorFlow Lite (Micro)
+// Variables globales usadas por TensorFlow Lite (Micro)
+tflite::MicroErrorReporter tflErrorReporter;
 
+// pull in all the TFLM ops, you can remove this line and
+// only pull in the TFLM ops you need, if would like to reduce
+// the compiled size of the sketch.
+//Puedes remover todas las opciones TFLM innecesarias
+tflite::AllOpsResolver tflOpsResolver;
 
+const tflite::Model* tflModel = nullptr;
+//tflite::MicroInterpreter* tflInterpreter = nullptr;
+TfLiteTensor* tflInputTensor = nullptr;
+TfLiteTensor* tflOutputTensor = nullptr;
 
+// Create a static memory buffer for TFLM, the size may need to
+// be adjusted based on the model you are using
+//Creamos un buffer de memoria para TFLM (se ajusta al modelo que se usa)
+constexpr int tensorArenaSize = 8 * 1024;
+byte tensorArena[tensorArenaSize];
+
+// array to map gesture index to a name
+// este es un mapa de indice de clases
+// Cambiamos las frutas por elementos y agrgamos una clase nueva
+const char* CLASSES[] = {
+  "Agua",   // u8"\U0001F34E", // Apple
+  "Aire",   // u8"\U0001F34C", // Banana
+  "Fuego",  // u8"\U0001F34A"  // Orange
+  "Tierra"
+};
+
+#define NUM_CLASSES (sizeof(CLASSES) / sizeof(CLASSES[0]))
+
+void setup() {
+  Serial.begin(9600);
+  while (!Serial);
+  
+  //Si hay un error saldra impreso en el monitor
+  if (!APDS.begin()) {
+    Serial.println("Error initializing APDS9960 sensor.");
+    while (1);
+  }
+  
+  if (!TFL.begin(model, NUM_CLASSES)) {
+    Serial.println("Error initializing TensorFlow Lite.");
+    while (1);
+  }
+
+  pinMode(LEDR, OUTPUT);
+  pinMode(LEDB, OUTPUT);
+  pinMode(LEDG, OUTPUT);
+}
+
+//Ahora para la sigueiente parte nuestra referencia es 
+//https://docs.arduino.cc/tutorials/nano-33-ble-sense/rgb-sensor
+void loop() {
+  int r, g, b, p, c;
+  float sum;
+
+  while (!APDS.colorAvailable() || !APDS.proximityAvailable()) {}
+
+  APDS.readColor(r, g, b, c);
+  p = APDS.readProximity();
+  sum = r + g + b;
+
+  if (p == 0 && c > 10 && sum > 0) {
+    float redRatio = r / sum;
+    float greenRatio = g / sum;
+    float blueRatio = b / sum;
+
+    TfLiteStatus invokeStatus = TFL.invoke();
+    if (invokeStatus != kTfLiteOk) {
+      Serial.println("Invoke failed!");
+      while (1);
+    }
+
+ // Segun la clase con una probabilidad mayor al 50% 
+ // se encendera una luz distinta vinculada a cada clase
+    for (int i = 0; i < NUM_CLASSES; i++) {
+      Serial.print(CLASSES[i]);
+      Serial.print(" ");
+      Serial.print(int(TFL.output()[i] * 100));
+      Serial.print("%\n");
+
+      if (TFL.output()[i] > 0.51) {
+        if (strcmp(CLASSES[i], "Fuego") == 0) {
+          digitalWrite(LEDR, LOW);  // Rojo para fuego
+          digitalWrite(LEDG, HIGH);
+          digitalWrite(LEDB, HIGH);
+        } else if (strcmp(CLASSES[i], "Agua") == 0) {
+          digitalWrite(LEDB, LOW);  // Azul para agua
+          digitalWrite(LEDG, HIGH);
+          digitalWrite(LEDR, HIGH);
+        } else if (strcmp(CLASSES[i], "Tierra") == 0) {
+          digitalWrite(LEDG, LOW);  // Verde para tierra
+          digitalWrite(LEDR, HIGH);
+          digitalWrite(LEDB, HIGH);
+        } else if (strcmp(CLASSES[i], "Aire") == 0) {
+          digitalWrite(LEDR, HIGH);  // Blanco para aire
+          digitalWrite(LEDG, HIGH);
+          digitalWrite(LEDB, HIGH);
+        }
+      }
+    }
+
+// Se imprime en el monitor la probabilidad luego de que se 
+//activen los sensores de proximidad
+    Serial.println();
+
+    while (!APDS.proximityAvailable() || (APDS.readProximity() == 0)) {}
+  }
+}
+
+```
 
 
 ## Materiales 
