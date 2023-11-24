@@ -1,6 +1,6 @@
 # Entregable 2
 Hola, bienvenido. 
-Esta es la documentacion del proyecto final!
+Esta es la documentación del proyecto final!!
 Estoy trabajando con [Silvana Olivares](https://github.com/kquita) y [val3ntiina](https://github.com/val3ntiina)
 
 
@@ -103,12 +103,15 @@ Arduino
 ## Referentes y recursos adicionales
 
 
-## Conclusiones y aprendizaje
-Al hacer el entrenamiento para la identificación de colores utilizamos colores rgb por lo que cuando identificamos colores e
+## Conclusiones y aprendizajes
+-Al realizar el entrenamiento, utilizamos colores RGB por lo que cuando identificamos colores en el entono real, presenta algunas dificultades para reconocer ciertos espectros. El algoritmo es muy fan de los elemento FUEGO y el VIENTO...Si eres de TIERRA wow y si eres AGUA doble wow. 
+
+-Es importante una buena luminosidad en el entorno para que capte mejor los colores.
+
 - Fue sumamente importante la colaboración entre compañeres del curso de intelgencia artificial. Tanto entre nosotras como grupo y la ayuda y guía recibida desde Aaron, J y el grupo de Amelia.
   
-Aprendizaje: Registro de error en línea de datos de archivo csv de la captura cromática correspondiente a fuego.
-Al momento de ejecutar las celdas en colab solo logró resultados en 2 colores ya que el tercero presentaba un error en una línea de código.
++Aprendizaje: Registro de error en línea de datos de archivo csv de la captura cromática correspondiente a fuego.
+Al momento de ejecutar las celdas en colab solo logró resultados en 2 colores ya que el tercero presentaba un error en una línea de código y en consecuencia desde la carpeta con el registro cromático defectuoso en adelante se detuvo.
 
 ![9CA9C69B-D850-4052-A39B-D32E635DE40E](https://github.com/sofantasyy/audiv027-2023-2/assets/142052341/6d85d823-9e42-460f-bc12-8eb665a4e141)
 
