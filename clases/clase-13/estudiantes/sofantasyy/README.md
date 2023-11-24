@@ -108,6 +108,21 @@ Arduino ID
 
 
 ## Referentes y recursos adicionales
+Código para activar LED 
+https://docs.arduino.cc/tutorials/nano-33-ble-sense/rgb-sensor
+
+
+Carpetas a instalar en el programa Arduino:
+
+-Arduino_APDS 9960
+
+-Arduino_tensorflowlite
+
+-Harvard_tinyMLX
+
+
+Link para entrenar algoritmo de Google Colab sin inetrvenir:
+https://colab.research.google.com/github/arduino/ArduinoTensorFlowLiteTutorials/blob/master/FruitToEmoji/FruitToEmoji.ipynb
 
 
 ## Conclusiones y aprendizajes
