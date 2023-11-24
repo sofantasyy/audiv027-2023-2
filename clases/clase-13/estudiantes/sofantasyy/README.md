@@ -70,8 +70,10 @@ Desde el archivo original de Object_color_classify.ino, se elimina el Model h ex
 
 
 ### PASO 5
-Ahora rescatamos el código desde Micro_Speech de Harvard_TinyMLx. relacionado con el encendido de la luz LED del microcontrolador. Esto con la finalidad de relacionar la respuesta de clasificación(Agua, Aire, Fuego o Tierra) con una respuesta lumínica adicional si el elemento clasificado posee una probabilidad de confianza mayor al 50%. Agua= Luz Azul, Fuego= Luz Roja, Tierra= Luz Verde y Aire= Luz Blanca
+Ahora rescatamos el código desde Micro_Speech de Harvard_TinyMLx. relacionado con el encendido de la luz LED del microcontrolador. Esto con la finalidad de relacionar la respuesta de clasificación(Agua, Aire, Fuego o Tierra) con una respuesta lumínica adicional si el elemento clasificado posee una probabilidad de confianza mayor al 50%. Agua= Luz Azul, Fuego= Luz Roja, Tierra= Luz Verde y Aire= Luz Blanca.
 
+
+A pesar de haber ingresado el código para que exista una respuesta LED adicional a la que se presenta en la pantalla, al probar el clasificador, ninguna luz se enciende.
 
 ### PASO 6
 
@@ -91,17 +93,18 @@ Ahora rescatamos el código desde Micro_Speech de Harvard_TinyMLx. relacionado c
 
 
 ## Materiales 
-Arduino Nano 33 BLE
+-Arduino Nano 33 BLE 
 
-Computador
+-Computador 
 
-Colores para registrar
+-Colores para registrar 
 
-Internet
+-Internet 
 
 
  #### Software : 
-Arduino
+Arduino ID
+
 
 ## Referentes y recursos adicionales
 
